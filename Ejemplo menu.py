@@ -1,7 +1,7 @@
 juegos = [['Catan', 4], ['Dixit', 2], ['Virus', 6], ['Carcassonne', 3]]
 opcion = ""
 
-while opcion != "g":
+while opcion != "h":
     print("a) Añadir un nuevo juego ")
     print("b) Mostrar la lista de juegos ")
     print("c) Mostrar los juegos ordenados alfabéticamente, de la Z a la A ")
@@ -39,20 +39,21 @@ while opcion != "g":
             if i[1] < 3:
                 i[1] += 2
         print(juegos)
-    if opcion == "g":
+
+    elif opcion == "g":
+        pedido = input("Dime qué juego quieres que te dejemos ")
         encontrado = False
-        eleccion = input("Dime que juego te quieres que te deje ")
-        for i in juegos:
-            if i[0] == eleccion:
+        for j in juegos:
+            if j[0].lower() == pedido.lower():
                 encontrado = True
-            print("El juego que buscas lo tenemos ")
-            if i[0] != eleccion:
-                print("El juego que buscas no lo tenemos ")
-            if i[1] > 0:
-                if i[1] == juegos:
-                    juegos[1] -= 1
-                    print(f"Te vamos a prestar el juego {eleccion} ")
-                if i[1] != juegos:
-                    print("El juego que buscas no lo tenemos en stock ")
-    if opcion == "h":
-        break
+                if j[1] > 0:
+                    j[1] -= 1
+                    print("Te prestamos", j[0], ". Quedan", j[1])
+                else:
+                    print("No hay stock del juego", j[0])
+        if encontrado == False:
+            print("Ese juego no está en la lista.")
+    elif opcion == "h":
+        print("Saliendo...")
+    else:
+        print("Opción no válida.")
